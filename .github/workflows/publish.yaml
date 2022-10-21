@@ -11,11 +11,13 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Set NPM Token
-      run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >> .npmrc
     - name: Insatll pnpm
       run: npm install -g pnpm
     - name: Install dependency, build package
       run: pnpm install
     - name: Publish package to npm.js
-      run: pnpm -r publish --access public --no-git-checks
+      run: |
+        pnpm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}"
+        pnpm -r publish --access public --no-git-checks
+      env: 
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
