@@ -14,7 +14,7 @@ jobs:
     - name: Set NPM Token
       run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >> .npmrc
     - name: Insatll pnpm
-      run: npm i pnpm
+      run: npm install -g pnpm
     - name: Install dependency, build package
       run: pnpm install
     - name: Publish package to npm.js
