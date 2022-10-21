@@ -18,4 +18,4 @@ jobs:
     - name: Install dependency, build package
       run: pnpm install
     - name: Publish package to npm.js
-      run: pnpm -r publish --access public
+      run: pnpm -r publish --access public --no-git-checks
